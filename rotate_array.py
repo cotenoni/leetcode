@@ -6,20 +6,25 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         length = len(nums)
-        newList = nums.copy()
-        cpt = 0
+        numsCopy = nums.copy()
+        newIndex = 0
         
         for i in range(length):
-            if i + k < length:
-                nums[i + k] = newList[i]
-            else:
-                nums[cpt] = newList[i]
-                cpt += 1
+            newIndex = i
+
+            for j in range(k):
+                if newIndex < length - 1:
+                    newIndex += 1
+                else:
+                    newIndex = 0
+
+            nums[newIndex] = numsCopy[i]
 
         print(nums)
         
 
 solution = Solution()
 solution.rotate([1,2,3,4,5,6,7], 3)
+solution.rotate([1,2], 3)
 
 
