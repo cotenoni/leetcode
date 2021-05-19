@@ -11,9 +11,7 @@ class Solution:
             if remaining in hash and hash[remaining] != i:
                 answer = [i, hash[remaining]]
 
-           
         answer.sort()
-        print(answer)
         return answer
 
 
