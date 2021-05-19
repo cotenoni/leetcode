@@ -9,6 +9,7 @@ class Solution:
             for j in range(len(nums2)):
                 if nums1[i] == nums2[j]:
                     output.append(nums1[i])
+                    del nums2[j]
                     break
 
         return output
