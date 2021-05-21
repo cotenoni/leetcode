@@ -7,16 +7,10 @@ class Solution:
         if m == 1 and n == 1:
             return 1
 
-        bottom = 0
-        right = 0
+        if m == 0 or n == 0:
+            return 0
 
-        if m > 1:
-            bottom = self.uniquePaths(m - 1, n)
-
-        if n > 1:
-            right = self.uniquePaths(m, n - 1)
-
-        memo[(m, n)] = bottom + right
+        memo[(m, n)] = self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)
         return memo[(m, n)]
 
 
