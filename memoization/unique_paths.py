@@ -1,6 +1,12 @@
+from typing import Dict
+
+
 class Solution:
     # https://leetcode.com/problems/unique-paths/
-    def uniquePaths(self, m: int, n: int, memo = {}) -> int:
+    def uniquePaths(self, m: int, n: int, memo = None) -> int:
+        if memo == None:
+            memo = {}
+            
         if (m, n) in memo:
             return memo[(m, n)]
 

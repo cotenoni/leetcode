@@ -2,7 +2,10 @@
 
 class Solution:
     #https://leetcode.com/problems/fibonacci-number/
-    def fib(self, n:int, memo = {}) -> int:
+    def fib(self, n:int, memo = None) -> int:
+        if memo == None:
+            memo = {}
+
         if n in memo:
             return memo[n]
 
@@ -14,7 +17,7 @@ class Solution:
 
 
 solution = Solution()
-print(solution.fib(6)) #expected: 8
-print(solution.fib(7)) #expected: 13
-print(solution.fib(8)) #expected: 31
-print(solution.fib(50)) #expected: 12586269025
+print(solution.fib(6)) #expected: 13
+print(solution.fib(7)) #expected: 21
+print(solution.fib(8)) #expected: 34
+print(solution.fib(50)) #expected: 20365011074
