@@ -20,7 +20,7 @@ class Solution:
                 remainderCombination.append(n)
 
                 if shortestCombination is None or len(remainderCombination) < len(shortestCombination):
-                    shortestCombination = remainderCombination.copy()
+                    shortestCombination = remainderCombination
 
         memo[target] = shortestCombination
         return shortestCombination
