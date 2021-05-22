@@ -6,20 +6,16 @@ class Solution:
         if memo == None:
             memo = {}
 
-        if target in memo:
-            return memo[target]
-
-        if target == 0:
-            return []
-        
-        if target < 0:
-            return None
+        if target in memo: return memo[target]
+        if target == 0: return []
+        if target < 0: return None
         
         for n in numbers:
             remainder = target - n
             remainderResult = self.howSum(remainder, numbers, memo)
 
             if remainderResult != None:
+                remainderResult = remainderResult.copy()
                 remainderResult.append(n)
                 memo[target] = remainderResult
                 return remainderResult

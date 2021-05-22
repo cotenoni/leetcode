@@ -6,14 +6,9 @@ class Solution:
         if memo == None:
             memo = {}
 
-        if target in memo:
-            return memo[target]
-
-        if target == 0:
-            return True
-        
-        if target < 0:
-            return False
+        if target in memo: return memo[target]
+        if target == 0: return True
+        if target < 0: return False
         
         for n in numbers:
             remainder = target - n
