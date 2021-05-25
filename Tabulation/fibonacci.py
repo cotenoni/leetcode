@@ -3,15 +3,16 @@
 class Solution:
     #https://leetcode.com/problems/fibonacci-number/
     def fib(self, n:int) -> int:
-        array = [0] * (n + 1)
+        table = [0] * (n + 1)
+        table[1] = 1
 
-        for i in range(len(array)):
-            if i <= 1:
-                array[i] = i
-            else:
-                array[i] = array[i - 1] + array [i - 2]
+        for i in range(len(table) - 1):
+            table[i + 1] += table[i];
 
-        return array[n]
+            if i + 2 < len(table):
+                table[i + 2] += table[i];
+
+        return table[n]
 
 
 solution = Solution()
