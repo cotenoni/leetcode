@@ -15,11 +15,8 @@ class Solution:
             if target.startswith(word):
                 suffix = target[len(word):]
                 suffixWays = self.allConstruct(suffix, wordBank, memo)
-
-                for way in suffixWays:
-                    way.insert(0, word)
-
-                result.extend(suffixWays)
+                targetWays = map(lambda way : [word] + way, suffixWays)
+                result.extend(targetWays)
 
         memo[target] = result.copy()    
         return result
