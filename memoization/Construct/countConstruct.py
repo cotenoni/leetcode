@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def countConstruct(self, target:str, wordBank: List[str], memo = None) -> bool:
+    def countConstruct(self, target:str, wordBank: List[str], memo = None) -> int:
         if memo == None:
             memo = {}
 
