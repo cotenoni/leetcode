@@ -19,3 +19,4 @@ const canSum = (targetSum, numbers) => {
 console.log(canSum(7, [6, 3, 4])); // true
 console.log(canSum(5, [1, 2, 3])); // true
 console.log(canSum(7, [3, 5])); // false
+console.log(canSum(300, [7, 14])); // true
