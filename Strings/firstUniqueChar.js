@@ -1,22 +1,26 @@
-const firstUniqChar = (s) => {
+const firstUniqChar = (s) => {    
+    let dict = {};
+
     for (let i = 0; i < s.length; i++) {
         const current = s[i];
-        let found = false;
 
-        for (j = 0; j < s.length; j++) {
-            if (i !== j) {
-                if (s[j] === current) {
-                    found = true;
-                }
-            }
+        if (current in dict) {
+            dict[current] += 1;
+        } else {
+            dict[current] = 1;
         }
-
-        if (!found) return i;
     }
 
+    for (let i = 0; i < s.length; i++) {
+        const current = s[i];
+
+        if (dict[current] === 1) {
+            return i;
+        }
+    }
     return -1;
 };
 
-console.log(frstUniqChar("leetcode")); // 0
-console.log(frstUniqChar("loveleetcode")); // 2
-console.log(frstUniqChar("aabb")); // -1
+console.log(firstUniqChar("leetcode")); // 0
+console.log(firstUniqChar("loveleetcode")); // 2
+console.log(firstUniqChar("aabb")); // -1
