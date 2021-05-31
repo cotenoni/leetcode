@@ -13,8 +13,7 @@ const myAtoi = (s) => {
         positive = false;
         index++
     }
-    console.log('index : ', index);
-    console.log('isNaN(s[index])', isNaN(s[index]));
+ 
     if (isNaN(s[index]) || s[index] === " ") return 0;
     
     let start = index;
