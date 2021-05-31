@@ -15,14 +15,13 @@
  var hasCycle = function(head) {
     if (!head || !head.next) return false;
 
-    let pos = 0;
+    let seen = new Set();
     let currentNode = head;
 
-    while (currentNode.next) {
-        if (typeof currentNode.pos !== "undefined") return true;
+    while (currentNode) {
+        if (seen.has(currentNode)) return true;
 
-        currentNode["pos"] = pos;
-        pos++;
+        seen.add(currentNode);
         currentNode = currentNode.next;
     }
 
@@ -30,10 +29,10 @@
 };
 
 
-// console.log(hasCycle(null)); // false
+console.log(hasCycle(null)); // false
 
-// let head = new ListNode(1);
-// console.log(hasCycle(head)); // false
+let head = new ListNode(1);
+console.log(hasCycle(head)); // false
 
 
 // let second = new ListNode(2)
@@ -41,10 +40,10 @@
 // second.next = head;
 // console.log(hasCycle(head)); // true
 
-let fourth = new ListNode(-4);
-let third = new ListNode(0, fourth);
-let second = new ListNode(2, third)
-let head = new ListNode(3, second);
-fourth.next = second;
-console.log(hasCycle(head)); // true
+// let fourth = new ListNode(-4);
+// let third = new ListNode(0, fourth);
+// let second = new ListNode(2, third)
+// let head = new ListNode(3, second);
+// fourth.next = second;
+// console.log(hasCycle(head)); // true
 
