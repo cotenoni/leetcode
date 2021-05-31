@@ -17,35 +17,30 @@
  * @return {ListNode}
  */
 const reverseList = (head) => {
-    if (!head || !head.next) return head;
+    let current = head;
+    let previous = null;
 
-    let currentNode = head;
-    let nextNode = head.next;
-
-    while (nextNode) {
-        const tempNext = nextNode.next;
-        const tempCurrent = nextNode;
-
-        nextNode.next = currentNode;
-        nextNode = tempNext;
-        currentNode = tempCurrent;
+    while (current) {
+        const tempNext = current.next;
+        current.next  = previous;
+        previous = current;
+        current = tempNext;
     }
 
-    head.next = null;
-    return currentNode;
+    return previous;
 };
 
-let fifth = new ListNode(5);
-let fourth = new ListNode(4, fifth);
-let third = new ListNode(3, fourth);
-let second = new ListNode(2, third);
-let head = new ListNode(1, second);
-console.log(reverseList(head)); // [5, 4, 3, 2, 1];
-
-
-// let second = new ListNode(2);
+// let fifth = new ListNode(5);
+// let fourth = new ListNode(4, fifth);
+// let third = new ListNode(3, fourth);
+// let second = new ListNode(2, third);
 // let head = new ListNode(1, second);
-// console.log(reverseList(head)); // [2, 1];
+// console.log(reverseList(head)); // [5, 4, 3, 2, 1];
 
 
-//console.log(reverseList(null)); // [];
+let second = new ListNode(2);
+let head = new ListNode(1, second);
+console.log(reverseList(head)); // [2, 1];
+
+
+console.log(reverseList(null)); // [];
