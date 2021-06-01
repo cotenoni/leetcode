@@ -1,26 +1,22 @@
 const canConstruct = (target, wordBank) => {
-    let table = Array(target.length + 1).fill(null);
-    table[0] = "";
+    let table = Array(target.length + 1).fill(false);
+    table[0] = true;
 
     for (let i = 0; i <= target.length; i++) {
         const current = table[i];
 
         if (current !== null) {
             for (let word of wordBank) {
-                const concatenation = current + word;
-
-                if (target.startsWith(concatenation)) {
-                    table[concatenation.length] = concatenation;
+                
+                if (target.substring(i, word.length) === word) {
+                    table[i + word.length] = true;
                 }
             }
         }
     }
 
-    return table[target.length] === target;
+    return table[target.length];
 };
-
-
-
 
 console.log(canConstruct("", ["cat", "dog", "mouse"])); // true
 console.log(canConstruct("abcdef", ["ab", "abc", "cd", "def", "abcd"])); // true
