@@ -5,9 +5,8 @@ const canConstruct = (target, wordBank) => {
     for (let i = 0; i <= target.length; i++) {
         const current = table[i];
 
-        if (current !== null) {
+        if (current) {
             for (let word of wordBank) {
-                
                 if (target.substring(i, word.length) === word) {
                     table[i + word.length] = true;
                 }
