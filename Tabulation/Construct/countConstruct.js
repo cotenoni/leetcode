@@ -7,10 +7,8 @@ const countConstruct = (target, wordBank) => {
 
         if (current) {
             for (let word of wordBank) {
-                const concatenation = current + word;
-
-                if (target.startsWith(concatenation)) {
-                    table[concatenation.length] += 1;
+                if (target.slice(i, i + word.length) === word) {
+                    table[i + word.length] += 1;
                 }
             }
         }
@@ -22,6 +20,6 @@ const countConstruct = (target, wordBank) => {
 
 console.log(countConstruct("", ["cat", "dog", "mouse"])); // 1
 console.log(countConstruct("abcdef", ["ab", "abc", "cd", "def", "abcd"])); // 1
-console.log(countConstruct("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"])); // false
+console.log(countConstruct("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"])); // 0
 console.log(countConstruct("skateboard", ["sk", "ateboard", "skate", "board", "ska", "teboard", "boar"])); // 3
-console.log(countConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", ["e", "ee", "eee", "eeee", "eeeee"])); // false
+console.log(countConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", ["e", "ee", "eee", "eeee", "eeeee"])); // 0
