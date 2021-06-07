@@ -10,24 +10,18 @@ class Solution:
     def firstBadVersion(self, n):
         found = False
 
-        minimum = 0
-        maximum = n
+        left = 1
+        right = n
 
-        while not found:
-            index = minimum + max(((maximum - minimum) // 2), 1)
-            isCurrentVersionBad = isBadVersion(index)
-            isPreviousVersionBad = isBadVersion(index - 1)
+        while left < right:
+            mid = left + (right - left) // 2
 
-            if isCurrentVersionBad and not isPreviousVersionBad:
-                found = True
-                continue
-            
-            if isCurrentVersionBad:
-                maximum = index
+            if isBadVersion(mid):
+                right = mid
             else:
-                minimum = index
+                left = mid + 1
 
-        return index
+        return left
 
 solution = Solution()
 print(solution.firstBadVersion(4)) # 4
