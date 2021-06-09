@@ -1,6 +1,6 @@
 from typing import List
 
-
+#https://leetcode.com/explore/interview/card/top-interview-questions-easy/97/dynamic-programming/572/
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         currentBestPrice = 0
