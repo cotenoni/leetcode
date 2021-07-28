@@ -2,25 +2,18 @@ from typing import List
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        if not nums:
-            return False
-        
-        if len(nums) == 1:
-            return True
-
         max_position = 0
-        pos = 0
-
-        while pos < len(nums):
-            max_position = max(max_position, pos + nums[pos])
-            pos += 1
+        for i, num in enumerate(nums):
             if max_position >= len(nums) - 1:
                 return True
-            if max_position < pos:
+            
+            if i > max_position:
                 return False
             
-        return True
-            
+            max_position = max(max_position, i + num)
+
+        return False
+           
 
 solution = Solution()
 print(solution.canJump([2,3,1,1,4])) #true
