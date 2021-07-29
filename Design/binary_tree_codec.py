@@ -13,6 +13,7 @@ class TreeNode(object):
     def __repr__(self):
         return self.__str__()
 
+#https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
 class Codec:
 
     def serialize(self, root):
@@ -70,7 +71,7 @@ class Codec:
                     node.right = candidate_children.pop()
                   
         return root
-        
+
 
 # Your Codec object will be instantiated and called as such:
 ser = Codec()
