@@ -5,12 +5,15 @@ from typing import List
 #https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        for i in range(len(numbers)):
-            remaining = target - numbers[i]
+        start, end = 0, len(numbers) - 1
 
-            bisect_index = bisect.bisect_left(numbers[i + 1:], remaining) + i + 1
-            if bisect_index < len(numbers) and numbers[bisect_index] == remaining:
-                return [i + 1, bisect_index + 1]
+        while start < end:
+            if numbers[start] + numbers[end] == target:
+                return [start + 1, end + 1]
+            elif numbers[start] + numbers[end] < target:
+                start += 1
+            else:
+                end -= 1
 
 
 sol = Solution()
