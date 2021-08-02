@@ -10,18 +10,28 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
-        current, stack = head, []
+        #find middle of the list using fast and slow pointer
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
 
-        while current:
-            stack.append(current.val)
-            current = current.next
+        #reverse second part of the list
+        previous = None
+        while slow:
+            temp_next = slow.next
+            slow.next = previous
+            previous = slow
+            slow = temp_next
+        slow = previous
 
-        current, i = head, 0
-        while i <= len(stack) // 2:
-            if current.val != stack.pop():
+        #check if any value are different
+        while slow:
+            if head.val != slow.val:
                 return False
-            i += 1
-            current = current.next
+
+            head = head.next
+            slow = slow.next
 
         return True
 
