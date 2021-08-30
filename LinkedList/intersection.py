@@ -9,22 +9,34 @@ class ListNode:
 #https://leetcode.com/problems/intersection-of-two-linked-lists/
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
-        visited = {}
-        
+        length_a = length_b = 0
+
         current = headA
         while current:
-            visited[current] = True
+            length_a += 1
             current = current.next
 
         current = headB
         while current:
-            if current in visited:
-                return current
-
+            length_b += 1
             current = current.next
-        
-        return None
 
+        diff = abs(length_a - length_b)
+        slow, fast = headA, headB
+        if length_b < length_a:
+            slow, fast = fast, slow
+
+        for _ in range(diff):
+            fast = fast.next
+
+        while slow and fast:
+            if fast == slow:
+                return slow
+            
+            fast = fast.next
+            slow = slow.next
+
+        return None
 
 sol = Solution()
 N = ListNode
@@ -44,3 +56,9 @@ print(sol.getIntersectionNode(headA, headB) == intersect)
 headA = N(2, N(6, N(4)))
 headB = N(1, N(5))
 print(sol.getIntersectionNode(headA, headB) == None)
+
+intersect = N(8)
+headA = N(4, N(1, intersect))
+headB = N(5, N(6, intersect))
+intersect.next = N(4, N(5))
+print(sol.getIntersectionNode(headA, headB) == intersect)
