@@ -1,21 +1,19 @@
 from typing import List
+from sortedcontainers import SortedList
 
 
 #https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
-        answer = [0] * len(nums)
+        sorted_list = SortedList()
+        answer = []
 
-        for i in range(len(nums)):
-            count = 0
-            for j in range(i, len(nums)):
-                if nums[j] < nums[i]:
-                    count += 1
+        for i in range(len(nums) - 1, -1, -1):
+            pos = sorted_list.bisect_left(nums[i])
+            answer.append(pos)
+            sorted_list.add(nums[i])
 
-            answer[i] = count
-
-        return answer
-
+        return reversed(answer)
 
 
 sol = Solution()
