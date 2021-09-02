@@ -3,21 +3,21 @@ from typing import List
 #https://leetcode.com/problems/array-nesting/
 class Solution:
     def arrayNesting(self, nums: List[int]) -> int:
-        def dfs(graph, node, length, visited={}):
-            if node in visited:
-                return length
+        visited = [False] * len(nums)
+        ans = 0
 
-            visited[node] = True
-            return dfs(graph, graph[node], length + 1, visited)
-        
-        graph = {i: num for i, num in enumerate(nums)}
-        longest_path = 0
-        
-        for i in range(len(nums)):
-            longest_path = max(dfs(graph, i, 0), longest_path)
+        for n in nums:
+            cnt = 0
+            
+            while not visited[n]:
+                cnt += 1
+                visited[n] = True
+                n = nums[n]
 
-        return longest_path
-        
+            ans = max(ans, cnt)
+
+        return ans
+            
 
 sol = Solution()
 print(sol.arrayNesting([5,4,0,3,1,6,2]) == 4)
