@@ -1,24 +1,17 @@
 from typing import List
+import bisect
 
 #https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        low, high = 0, len(nums) - 1
+        if len(nums) == 0:
+            return [-1, -1]
 
-        while low <= high:
-            mid = low + (high - low) // 2
-
-            if nums[low] == target and nums[high] == target:
-                return [low, high]
-            elif nums[mid] == target:
-                if nums[low] != nums[mid]:
-                    low += 1
-                if nums[high] != nums[mid]:
-                    high -= 1
-            elif nums[mid] < target:
-                low = mid + 1
-            else:
-                high = mid - 1
+        low = bisect.bisect_left(nums, target)
+        high = bisect.bisect_right(nums, target)
+    
+        if low < high:
+            return [low, high - 1]
          
         return [-1, -1]
 
