@@ -1,5 +1,6 @@
 from typing import List, Optional
 import itertools
+from functools import lru_cache
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -11,6 +12,7 @@ class TreeNode:
 #https://leetcode.com/problems/unique-binary-search-trees-ii/
 class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
+        @lru_cache()
         def build_trees(start, end):
             if start > end:
                 return [None]
