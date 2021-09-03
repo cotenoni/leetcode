@@ -11,24 +11,22 @@ class TreeNode:
 #https://leetcode.com/problems/unique-binary-search-trees-ii/
 class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
-        def helper(nodes_val):
-            if not nodes_val:
+        def build_trees(start, end):
+            if start > end:
                 return [None]
 
             trees = []
 
-            for i, val in enumerate(nodes_val):
-                left_subtrees = helper(nodes_val[:i])
-                right_subtrees = helper(nodes_val[i+1:])
+            for i in range(start, end + 1):
+                left_subtrees = build_trees(start, i - 1)
+                right_subtrees = build_trees(i + 1, end)
                 
                 for (left, right) in itertools.product(left_subtrees, right_subtrees):
-                    root = TreeNode(val, left, right)
+                    root = TreeNode(i, left, right)
                     trees.append(root)
             return trees
 
-        nodes_val = [val for val in range(1, n + 1)]
-        return helper(nodes_val)
-
+        return build_trees(1, n)
 
 sol = Solution()
 print(len(sol.generateTrees(3)) == 5)
