@@ -4,19 +4,15 @@ import string
 #https://leetcode.com/problems/shifting-letters/
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[int]) -> str:
-        running_sum, sums = 0, [0] * len(shifts)
+        running_sum, ans = 0, ""
 
         for i in range(len(shifts) - 1, -1, -1):
             running_sum += shifts[i]
             running_sum = running_sum % 26
-            sums[i] = running_sum
+            index = ((ord(s[i]) - 97) + running_sum) % 26
+            ans += string.ascii_lowercase[index]
 
-        string_to_update = list(s)
-        for i, c in enumerate(s):
-            index = ((ord(c) - 97) + sums[i]) % 26
-            string_to_update[i] = string.ascii_lowercase[index]
-
-        return ''.join(string_to_update)
+        return ans[::-1]
 
 
 sol = Solution()
