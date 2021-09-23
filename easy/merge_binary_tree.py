@@ -1,5 +1,6 @@
 # Definition for a binary tree node.
 from typing import Optional
+import collections
 
 
 class TreeNode:
@@ -20,15 +21,27 @@ class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root1:
             return root2
-
-        if not root2:
-            return root1
         
-        return TreeNode(
-            root1.val + root2.val,
-            self.mergeTrees(root1.left, root2.left),
-            self.mergeTrees(root1.right, root2.right)
-        )
+        queue = collections.deque([(root1, root2)])
+
+        while queue:
+            (one, two) = queue.popleft()
+    
+            if not one or not two:
+                continue
+
+            one.val += two.val
+            if not one.left:
+                one.left = two.left
+            else:
+                queue.append((one.left, two.left))
+
+            if not one.right:
+                one.right = two.right
+            else:
+                queue.append((one.right, two.right))
+            
+        return root1
 
 
 sol = Solution()
